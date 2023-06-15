@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Sentiment Analysis</title>
+</head>
+<body>
+    <div class="box" id="information_area">
+        <h1 class="title">Let's do sentiment analysis</h1>
+
+        <form action="/analyze" method="post">
+            <input class="textarea" type="text" name="sentence" id="sentence" placeholder="What's on your mind?">
+            <br>
+            <input class="button is-link is-light" type="submit" value="Submit">
+        </form>
+
+        <div id="output_area">
+                {% if error_msg %}
+                <h2>
+                    {{ error_msg }}
+                </h2>
+                {% elif sentence %}
+                <h2>
+                    {{ sentence }}
+                </h2>
+                {% endif %}
+        </div>
+
+    </div>
+
+    
+    
+<!-- USE API: https://rapidapi.com/fyhao/api/text-sentiment-analysis-method -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+       Sentiment analysis model designed by <b> Fahim Muntasir </b> @ 2023
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
