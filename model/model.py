@@ -15,10 +15,10 @@ trainDS['sentiment'] = trainDS['sentiment'].replace(replacement_dict)
 sns.countplot(trainDS,x='sentiment')
 print(trainDS.shape)
 
-sampleDS = trainDS[:1000]   # 1000 sample taken
+sampleDS = trainDS[:100]   # 100 sample taken
 sampleDS.to_csv('sampleTrainDS.csv')
 
-valDS = trainDS[27400:]     # last 80 sample taken for validation
+valDS = trainDS[27460:]     # last 20 sample taken for validation
 valDS.to_csv('sampleValDS.csv')
 
 # Load Dataset
@@ -51,4 +51,4 @@ metrics = trainer.evaluate()
 
 
 # save
-trainer.model._save_pretrained(save_directory="./model")
+trainer.model._save_pretrained(save_directory="miniLM")
