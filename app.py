@@ -1,6 +1,28 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+from setfit import SetFitModel
 
 app = Flask(__name__)
+
+model = SetFitModel.from_pretrained("./model/miniLM")
+label_mapping = {
+    2: "Negative",
+    0: "Neutral",
+    1: "Positive"
+}
+
+# cheking in json
+
+@app.route('/prediction',methods=['POST'])
+def prediction():
+    text = request.json['text']
+    prediction_output = model([text]).item()   # return 0/1/2
+    prediction = label_mapping[prediction_output]  # returns pos neg neutral
+    return jsonify({'prediction': prediction})
+
+
+
+
+
 
 @app.route("/analyze", methods=['GET', 'POST'])
 def analyze():
