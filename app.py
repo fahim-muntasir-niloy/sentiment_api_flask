@@ -10,7 +10,7 @@ label_mapping = {
     1: "Positive"
 }
 
-# cheking in json
+# checking in json
 
 @app.route('/prediction',methods=['POST'])
 def prediction():
@@ -21,7 +21,7 @@ def prediction():
 
 
 
-
+# website Pages
 
 
 @app.route("/analyze", methods=['GET', 'POST'])
@@ -29,8 +29,10 @@ def analyze():
     if request.method == 'POST':
         text_to_analyze = request.form['sentence']
         
-        if text_to_analyze.strip(): 
-            return render_template("index.html", sentence=text_to_analyze)
+        if text_to_analyze.strip():
+            prediction_output = model([text_to_analyze]).item()
+            prediction = label_mapping[prediction_output] 
+            return render_template("index.html", sentence=prediction)
         else:
             error_msg = "Enter text to analyze 🤖"
             return render_template("index.html", error_msg=error_msg)
@@ -39,6 +41,8 @@ def analyze():
     return render_template("index.html")
 
 
+
+# run website
 
 if __name__ == "__main__":
     app.run(debug=True)
