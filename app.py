@@ -17,7 +17,7 @@ def prediction():
     text = request.json['text']
     prediction_output = model([text]).item()   # return 0/1/2
     prediction = label_mapping[prediction_output]  # returns pos neg neutral
-    return jsonify({'prediction': prediction})
+    return jsonify({'sentiment': prediction})
 
 
 
@@ -29,10 +29,13 @@ def analyze():
     if request.method == 'POST':
         text_to_analyze = request.form['sentence']
         
-        if text_to_analyze.strip():
+        if text_to_analyze is not None:
             prediction_output = model([text_to_analyze]).item()
-            prediction = label_mapping[prediction_output] 
+            prediction = label_mapping[prediction_output]
             return render_template("index.html", sentence=prediction)
+            # return jsonify({'sentiment': prediction})
+        
+        
         else:
             error_msg = "Enter text to analyze 🤖"
             return render_template("index.html", error_msg=error_msg)
