@@ -12,8 +12,8 @@ label_mapping = {
 
 # checking in json
 
-@app.route('/prediction',methods=['POST'])
-def prediction():
+@app.route('/analyze',methods=['POST'])
+def analyze():
     text = request.json['text']
     prediction_output = model([text]).item()   # return 0/1/2
     prediction = label_mapping[prediction_output]  # returns pos neg neutral
@@ -24,16 +24,15 @@ def prediction():
 # website Pages
 
 
-@app.route("/analyze", methods=['GET', 'POST'])
-def analyze():
+@app.route("/prediction", methods=['GET', 'POST'])
+def prediction():
     if request.method == 'POST':
-        text_to_analyze = request.form['sentence']
+        text_to_analyze = request.form.get('sentence')
         
-        if text_to_analyze is not None:
+        if text_to_analyze.strip():
             prediction_output = model([text_to_analyze]).item()
             prediction = label_mapping[prediction_output]
             return render_template("index.html", sentence=prediction)
-            # return jsonify({'sentiment': prediction})
         
         
         else:
@@ -48,4 +47,4 @@ def analyze():
 # run website
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
