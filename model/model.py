@@ -2,6 +2,9 @@ from setfit import SetFitModel, SetFitTrainer, sample_dataset
 from datasets import load_dataset, Dataset
 from sentence_transformers.losses import CosineSimilarityLoss
 
+import torch
+
+
 import pandas as pd
 import seaborn as sns
 
@@ -48,7 +51,8 @@ trainer = SetFitTrainer(
 
 trainer.train()
 metrics = trainer.evaluate()
+print(metrics)
 
 
 # save
-trainer.model._save_pretrained(save_directory="miniLM")
+trainer.model._save_pretrained(save_directory="testing")
