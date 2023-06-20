@@ -25,7 +25,9 @@ To check the API in postman, another endpoint at [http://127.0.0.1:5000/analyze]
 {
     "text" : "Today is a boring day"
 }
+```
 
+```py
 # ouput
 {
     "sentiment" : "Negative"
