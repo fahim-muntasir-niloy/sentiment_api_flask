@@ -12,9 +12,15 @@ python model.py
 
 *This has to be run only once for creating the model and the miniLM folder.*
 
+## Starting the Flask Server 🌶️
+Running the `app.py` file would start the flask server at port 5000.
+```cmd
+python app.py
+```
+
 
 ## Testing API endpoint in *Postman* 🧮
-To check the API in postman, another endpoint at [http://127.0.0.1:5000/analyze](http://127.0.0.1:5000/analyze) was created. This simply took a json input in the body as raw json data, and returned the sentiment as json output.
+To check the API in postman, an endpoint at [http://127.0.0.1:5000/analyze](http://127.0.0.1:5000/analyze) was created. This simply took a json input in the body as raw json data, and returned the sentiment as json output.
 
 ```py
 # input
@@ -33,11 +39,8 @@ To check the API in postman, another endpoint at [http://127.0.0.1:5000/analyze]
 There is also the `predict.py` file which can send request to the "/analyze" directory and print the sentiment output.
 
 ## Web-App 🕸️
-Running the `app.py` file would start the flask server at port 5000. Simply go to [http://127.0.0.1:5000/prediction](http://127.0.0.1:5000/prediction) for the web UI, where entering any text would print the sentiment output as positive/negative/neutral on the page.
+After starting the server, simply go to [http://127.0.0.1:5000/prediction](http://127.0.0.1:5000/prediction) for the web UI, where entering any text would print the sentiment output as positive/negative/neutral on the page.
 
-```cmd
-python app.py
-```
 
 
 # References 
